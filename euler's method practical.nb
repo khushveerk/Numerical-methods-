@@ -1,0 +1,1069 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     30411,       1061]
+NotebookOptionsPosition[     28752,        994]
+NotebookOutlinePosition[     29100,       1009]
+CellTagsIndexPosition[     29057,       1006]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "Practical Euler\[CloseCurlyQuote]s method\n",
+ StyleBox["question-1", "Subtitle"]
+}], "Title",
+ CellChangeTimes->{{4.0008683588251476`*^9, 4.00086839121222*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"EulerMethod", "[", 
+    RowBox[{
+    "a0_", ",", " ", "b0_", ",", " ", "n0_", ",", " ", "f_", ",", " ", 
+     "alpha_"}], "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a", "=", "a0"}], ",", 
+       RowBox[{"b", "=", "b0"}], ",", 
+       RowBox[{"n", "=", "n0"}], ",", "h", ",", "ti"}], "}"}], ",", " ", 
+     RowBox[{
+      RowBox[{"h", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"b", "-", "a"}], ")"}], "/", "n"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ti", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"a", "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"j", "-", "1"}], ")"}], "h"}]}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"j", ",", "1", ",", 
+           RowBox[{"n", "+", "1"}]}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ui", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{"{", 
+          RowBox[{"n", "+", "1"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"ui", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "=", "alpha"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"OutputDetails", "=", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", 
+          RowBox[{"ti", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", "alpha"}], "}"}], "}"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", "n"}], ",", 
+        RowBox[{"i", "++"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ui", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", "+", "1"}], "]"}], "]"}], "=", 
+          RowBox[{
+           RowBox[{"ui", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "+", 
+           RowBox[{"h", "*", 
+            RowBox[{"f", "[", 
+             RowBox[{
+              RowBox[{"ti", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{"ui", "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"OutputDetails", "=", 
+          RowBox[{"Append", "[", 
+           RowBox[{"OutputDetails", ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{"N", "[", 
+               RowBox[{"ti", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", "+", "1"}], "]"}], "]"}], "]"}], ",", 
+              RowBox[{"N", "[", 
+               RowBox[{"ui", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", "+", "1"}], "]"}], "]"}], "]"}]}], "}"}]}], 
+           "]"}]}], ";"}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"NumberForm", "[", 
+        RowBox[{
+         RowBox[{"TableForm", "[", 
+          RowBox[{"OutputDetails", ",", 
+           RowBox[{"TableHeadings", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"None", ",", 
+              RowBox[{"{", 
+               RowBox[{
+               "\"\<i\>\"", ",", ",", "\"\<ti\>\"", ",", " ", "\"\<ui\>\""}], 
+               "}"}]}], "}"}]}]}], "]"}], ",", "6"}], "]"}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<Subinterval size h used=\>\"", ",", "h"}], "]"}], ";"}]}],
+     "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"t_", ",", "w_"}], "]"}], ":=", " ", 
+   RowBox[{"1", "+", 
+    RowBox[{"w", "/", "t"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", "=", "1"}], ";", " ", 
+  RowBox[{"b", "=", "6"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", "10"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"alpha", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"EulerMethod", "[", 
+    RowBox[{"a", ",", "b", ",", "10", ",", "f", ",", "alpha"}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{4.000868400843729*^9, 4.0008684034683156`*^9}, {
+   4.000868436060233*^9, 4.000868844930496*^9}, {4.0008688790530634`*^9, 
+   4.000869193660474*^9}, {4.0008692256967993`*^9, 4.000869227839642*^9}, {
+   4.0008693097135773`*^9, 4.0008693407039413`*^9}, 4.0008693971674547`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  TagBox[
+   TagBox[GridBox[{
+      {
+       TagBox["\<\"i\"\>",
+        HoldForm], 
+       TagBox["Null",
+        HoldForm], 
+       TagBox["\<\"ti\"\>",
+        HoldForm]},
+      {
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False], 
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False], 
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False]},
+      {
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False], 
+       InterpretationBox["\<\"1.5\"\>",
+        1.5,
+        AutoDelete->True], 
+       InterpretationBox["\<\"2.\"\>",
+        2.,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"2\"\>",
+        2,
+        Editable->False], 
+       InterpretationBox["\<\"2.\"\>",
+        2.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"3.16667\"\>",
+        3.1666666666666665`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"3\"\>",
+        3,
+        Editable->False], 
+       InterpretationBox["\<\"2.5\"\>",
+        2.5,
+        AutoDelete->True], 
+       InterpretationBox["\<\"4.45833\"\>",
+        4.458333333333333,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"4\"\>",
+        4,
+        Editable->False], 
+       InterpretationBox["\<\"3.\"\>",
+        3.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"5.85\"\>",
+        5.85,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"5\"\>",
+        5,
+        Editable->False], 
+       InterpretationBox["\<\"3.5\"\>",
+        3.5,
+        AutoDelete->True], 
+       InterpretationBox["\<\"7.325\"\>",
+        7.325,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"6\"\>",
+        6,
+        Editable->False], 
+       InterpretationBox["\<\"4.\"\>",
+        4.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"8.87143\"\>",
+        8.871428571428572,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"7\"\>",
+        7,
+        Editable->False], 
+       InterpretationBox["\<\"4.5\"\>",
+        4.5,
+        AutoDelete->True], 
+       InterpretationBox["\<\"10.4804\"\>",
+        10.480357142857143`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"8\"\>",
+        8,
+        Editable->False], 
+       InterpretationBox["\<\"5.\"\>",
+        5.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"12.1448\"\>",
+        12.14484126984127,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"9\"\>",
+        9,
+        Editable->False], 
+       InterpretationBox["\<\"5.5\"\>",
+        5.5,
+        AutoDelete->True], 
+       InterpretationBox["\<\"13.8593\"\>",
+        13.859325396825398`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"10\"\>",
+        10,
+        Editable->False], 
+       InterpretationBox["\<\"6.\"\>",
+        6.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"15.6193\"\>",
+        15.61926406926407,
+        AutoDelete->True]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+       "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[2.0999999999999996`]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    {None, OutputFormsDump`HeadedColumns}],
+   Function[BoxForm`e$, 
+    TableForm[BoxForm`e$, TableHeadings -> {None, {"i", Null, "ti", "ui"}}]]],
+  NumberForm[#, 6]& ]], "Print",
+ CellChangeTimes->{4.0008694028387675`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Subinterval size h used=\"\>", "\[InvisibleSpace]", 
+   FractionBox["1", "2"]}],
+  SequenceForm["Subinterval size h used=", 
+   Rational[1, 2]],
+  Editable->False]], "Print",
+ CellChangeTimes->{4.00086940284146*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+question-2
+\
+\>", "Subtitle",
+ CellChangeTimes->{{4.000869422747397*^9, 4.0008694288734245`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"EulerMethodwithH", "[", 
+    RowBox[{
+    "a0_", ",", " ", "b0_", ",", " ", "h0_", ",", " ", "g_", ",", " ", 
+     "alpha_"}], "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a", "=", "a0"}], ",", 
+       RowBox[{"b", "=", "b0"}], ",", 
+       RowBox[{"h", "=", "h0"}], ",", "n", ",", "ti"}], "}"}], ",", " ", 
+     RowBox[{
+      RowBox[{"n", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"b", "-", "a"}], ")"}], "/", "h"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ti", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"a", "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"j", "-", "1"}], ")"}], "h"}]}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"j", ",", "1", ",", 
+           RowBox[{"n", "+", "1"}]}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ui", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{"{", 
+          RowBox[{"n", "+", "1"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"ui", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "=", "alpha"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"OutputDetails", "=", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", 
+          RowBox[{"ti", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", "alpha"}], "}"}], "}"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", "n"}], ",", 
+        RowBox[{"i", "++"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ui", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", "+", "1"}], "]"}], "]"}], "=", 
+          RowBox[{
+           RowBox[{"ui", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "+", 
+           RowBox[{"h", "*", 
+            RowBox[{"f", "[", 
+             RowBox[{
+              RowBox[{"ti", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{"ui", "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"OutputDetails", "=", 
+          RowBox[{"Append", "[", 
+           RowBox[{"OutputDetails", ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{"N", "[", 
+               RowBox[{"ti", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", "+", "1"}], "]"}], "]"}], "]"}], ",", 
+              RowBox[{"N", "[", 
+               RowBox[{"ui", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", "+", "1"}], "]"}], "]"}], "]"}]}], "}"}]}], 
+           "]"}]}], ";"}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"NumberForm", "[", 
+        RowBox[{
+         RowBox[{"TableForm", "[", 
+          RowBox[{"OutputDetails", ",", 
+           RowBox[{"TableHeadings", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"None", ",", 
+              RowBox[{"{", 
+               RowBox[{
+               "\"\<i\>\"", ",", ",", "\"\<ti\>\"", ",", " ", "\"\<ui\>\""}], 
+               "}"}]}], "}"}]}]}], "]"}], ",", "6"}], "]"}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<Subinterval size h used=\>\"", ",", "h"}], "]"}], ";"}]}],
+     "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"t_", ",", "w_"}], "]"}], ":=", " ", 
+   RowBox[{"1", "+", 
+    RowBox[{"w", "/", "t"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", "=", "1"}], ";", " ", 
+  RowBox[{"b", "=", "6"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", "=", "0.2"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"alpha", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"EulerMethodwithH", "[", 
+   RowBox[{"a", ",", "b", ",", "h", ",", "g", ",", "alpha"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{4.0008694627336054`*^9, 4.000869572766387*^9}, {
+  4.0008696426042376`*^9, 4.000869655099573*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  TagBox[
+   TagBox[GridBox[{
+      {
+       TagBox["\<\"i\"\>",
+        HoldForm], 
+       TagBox["Null",
+        HoldForm], 
+       TagBox["\<\"ti\"\>",
+        HoldForm]},
+      {
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False], 
+       InterpretationBox["\<\"1.\"\>",
+        1.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False]},
+      {
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False], 
+       InterpretationBox["\<\"1.2\"\>",
+        1.2,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1.4\"\>",
+        1.4,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"2\"\>",
+        2,
+        Editable->False], 
+       InterpretationBox["\<\"1.4\"\>",
+        1.4,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1.83333\"\>",
+        1.8333333333333333`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"3\"\>",
+        3,
+        Editable->False], 
+       InterpretationBox["\<\"1.6\"\>",
+        1.6,
+        AutoDelete->True], 
+       InterpretationBox["\<\"2.29524\"\>",
+        2.295238095238095,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"4\"\>",
+        4,
+        Editable->False], 
+       InterpretationBox["\<\"1.8\"\>",
+        1.8,
+        AutoDelete->True], 
+       InterpretationBox["\<\"2.78214\"\>",
+        2.782142857142857,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"5\"\>",
+        5,
+        Editable->False], 
+       InterpretationBox["\<\"2.\"\>",
+        2.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"3.29127\"\>",
+        3.291269841269841,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"6\"\>",
+        6,
+        Editable->False], 
+       InterpretationBox["\<\"2.2\"\>",
+        2.2,
+        AutoDelete->True], 
+       InterpretationBox["\<\"3.8204\"\>",
+        3.8203968253968252`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"7\"\>",
+        7,
+        Editable->False], 
+       InterpretationBox["\<\"2.4\"\>",
+        2.4000000000000004`,
+        AutoDelete->True], 
+       InterpretationBox["\<\"4.36771\"\>",
+        4.367705627705628,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"8\"\>",
+        8,
+        Editable->False], 
+       InterpretationBox["\<\"2.6\"\>",
+        2.6,
+        AutoDelete->True], 
+       InterpretationBox["\<\"4.93168\"\>",
+        4.931681096681097,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"9\"\>",
+        9,
+        Editable->False], 
+       InterpretationBox["\<\"2.8\"\>",
+        2.8,
+        AutoDelete->True], 
+       InterpretationBox["\<\"5.51104\"\>",
+        5.511041181041182,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"10\"\>",
+        10,
+        Editable->False], 
+       InterpretationBox["\<\"3.\"\>",
+        3.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"6.10469\"\>",
+        6.1046869796869805`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"11\"\>",
+        11,
+        Editable->False], 
+       InterpretationBox["\<\"3.2\"\>",
+        3.2,
+        AutoDelete->True], 
+       InterpretationBox["\<\"6.71167\"\>",
+        6.711666111666112,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"12\"\>",
+        12,
+        Editable->False], 
+       InterpretationBox["\<\"3.4\"\>",
+        3.4000000000000004`,
+        AutoDelete->True], 
+       InterpretationBox["\<\"7.33115\"\>",
+        7.331145243645244,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"13\"\>",
+        13,
+        Editable->False], 
+       InterpretationBox["\<\"3.6\"\>",
+        3.6,
+        AutoDelete->True], 
+       InterpretationBox["\<\"7.96239\"\>",
+        7.962389081506728,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"14\"\>",
+        14,
+        Editable->False], 
+       InterpretationBox["\<\"3.8\"\>",
+        3.8000000000000003`,
+        AutoDelete->True], 
+       InterpretationBox["\<\"8.60474\"\>",
+        8.604744030479324,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"15\"\>",
+        15,
+        Editable->False], 
+       InterpretationBox["\<\"4.\"\>",
+        4.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"9.25763\"\>",
+        9.257625295241393,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"16\"\>",
+        16,
+        Editable->False], 
+       InterpretationBox["\<\"4.2\"\>",
+        4.2,
+        AutoDelete->True], 
+       InterpretationBox["\<\"9.92051\"\>",
+        9.920506560003464,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"17\"\>",
+        17,
+        Editable->False], 
+       InterpretationBox["\<\"4.4\"\>",
+        4.4,
+        AutoDelete->True], 
+       InterpretationBox["\<\"10.5929\"\>",
+        10.592911634289344`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"18\"\>",
+        18,
+        Editable->False], 
+       InterpretationBox["\<\"4.6\"\>",
+        4.6,
+        AutoDelete->True], 
+       InterpretationBox["\<\"11.2744\"\>",
+        11.274407617666132`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"19\"\>",
+        19,
+        Editable->False], 
+       InterpretationBox["\<\"4.8\"\>",
+        4.800000000000001,
+        AutoDelete->True], 
+       InterpretationBox["\<\"11.9646\"\>",
+        11.964599253216832`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"20\"\>",
+        20,
+        Editable->False], 
+       InterpretationBox["\<\"5.\"\>",
+        5.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"12.6631\"\>",
+        12.663124222100867`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"21\"\>",
+        21,
+        Editable->False], 
+       InterpretationBox["\<\"5.2\"\>",
+        5.2,
+        AutoDelete->True], 
+       InterpretationBox["\<\"13.3696\"\>",
+        13.369649190984902`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"22\"\>",
+        22,
+        Editable->False], 
+       InterpretationBox["\<\"5.4\"\>",
+        5.4,
+        AutoDelete->True], 
+       InterpretationBox["\<\"14.0839\"\>",
+        14.083866467561243`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"23\"\>",
+        23,
+        Editable->False], 
+       InterpretationBox["\<\"5.6\"\>",
+        5.6000000000000005`,
+        AutoDelete->True], 
+       InterpretationBox["\<\"14.8055\"\>",
+        14.805491151544993`,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"24\"\>",
+        24,
+        Editable->False], 
+       InterpretationBox["\<\"5.8\"\>",
+        5.800000000000001,
+        AutoDelete->True], 
+       InterpretationBox["\<\"15.5343\"\>",
+        15.5342586926716,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"25\"\>",
+        25,
+        Editable->False], 
+       InterpretationBox["\<\"6.\"\>",
+        6.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"16.2699\"\>",
+        16.269922785522343`,
+        AutoDelete->True]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+       "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[2.0999999999999996`]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    {None, OutputFormsDump`HeadedColumns}],
+   Function[BoxForm`e$, 
+    TableForm[BoxForm`e$, TableHeadings -> {None, {"i", Null, "ti", "ui"}}]]],
+  NumberForm[#, 6]& ]], "Print",
+ CellChangeTimes->{4.000869695274163*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Subinterval size h used=\"\>", "\[InvisibleSpace]", "0.2`"}],
+  SequenceForm["Subinterval size h used=", 0.2],
+  Editable->False]], "Print",
+ CellChangeTimes->{4.000869695276125*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+question-3\
+\>", "Subtitle",
+ CellChangeTimes->{{4.000869732106086*^9, 4.0008697355167713`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"t_", ",", "x_"}], "]"}], ":=", " ", "x"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", "=", "0.2"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"EulerMethodwithH", "[", 
+   RowBox[{"0", ",", "0.4", ",", "h", ",", "f", ",", "1"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{4.0008697461883297`*^9, 4.000869795324641*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  TagBox[
+   TagBox[GridBox[{
+      {
+       TagBox["\<\"i\"\>",
+        HoldForm], 
+       TagBox["Null",
+        HoldForm], 
+       TagBox["\<\"ti\"\>",
+        HoldForm]},
+      {
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False], 
+       InterpretationBox["\<\"0.\"\>",
+        0.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False]},
+      {
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False], 
+       InterpretationBox["\<\"0.2\"\>",
+        0.2,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1.2\"\>",
+        1.2,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"2\"\>",
+        2,
+        Editable->False], 
+       InterpretationBox["\<\"0.4\"\>",
+        0.4,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1.44\"\>",
+        1.44,
+        AutoDelete->True]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+       "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[2.0999999999999996`]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    {None, OutputFormsDump`HeadedColumns}],
+   Function[BoxForm`e$, 
+    TableForm[BoxForm`e$, TableHeadings -> {None, {"i", Null, "ti", "ui"}}]]],
+  NumberForm[#, 6]& ]], "Print",
+ CellChangeTimes->{4.0008698016168585`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Subinterval size h used=\"\>", "\[InvisibleSpace]", "0.2`"}],
+  SequenceForm["Subinterval size h used=", 0.2],
+  Editable->False]], "Print",
+ CellChangeTimes->{4.000869801618024*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+question-4\
+\>", "Subtitle",
+ CellChangeTimes->{{4.0008698117875977`*^9, 4.0008698186661634`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"t_", ",", "x_"}], "]"}], ":=", " ", "x"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", "2"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"EulerMethod", "[", 
+   RowBox[{"0", ",", "0.4", ",", "n", ",", "f", ",", "1"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{4.000869835020718*^9, 4.000869855388668*^9}, {
+  4.0008698924300675`*^9, 4.0008698935172014`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  TagBox[
+   TagBox[GridBox[{
+      {
+       TagBox["\<\"i\"\>",
+        HoldForm], 
+       TagBox["Null",
+        HoldForm], 
+       TagBox["\<\"ti\"\>",
+        HoldForm]},
+      {
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False], 
+       InterpretationBox["\<\"0.\"\>",
+        0.,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False]},
+      {
+       InterpretationBox["\<\"1\"\>",
+        1,
+        Editable->False], 
+       InterpretationBox["\<\"0.2\"\>",
+        0.2,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1.2\"\>",
+        1.2,
+        AutoDelete->True]},
+      {
+       InterpretationBox["\<\"2\"\>",
+        2,
+        Editable->False], 
+       InterpretationBox["\<\"0.4\"\>",
+        0.4,
+        AutoDelete->True], 
+       InterpretationBox["\<\"1.44\"\>",
+        1.44,
+        AutoDelete->True]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, 
+       "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[2.0999999999999996`]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    {None, OutputFormsDump`HeadedColumns}],
+   Function[BoxForm`e$, 
+    TableForm[BoxForm`e$, TableHeadings -> {None, {"i", Null, "ti", "ui"}}]]],
+  NumberForm[#, 6]& ]], "Print",
+ CellChangeTimes->{{4.0008698708674707`*^9, 4.000869897809701*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Subinterval size h used=\"\>", "\[InvisibleSpace]", "0.2`"}],
+  SequenceForm["Subinterval size h used=", 0.2],
+  Editable->False]], "Print",
+ CellChangeTimes->{{4.0008698708674707`*^9, 4.0008698978147936`*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+question-5\
+\>", "Subtitle",
+ CellChangeTimes->{{4.000870052459575*^9, 4.0008700600259285`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"x", "'"}], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{"x", "[", "t", "]"}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"x", "[", "0", "]"}], "\[Equal]", "1"}]}], "}"}], ",", 
+   RowBox[{"x", "[", "t", "]"}], ",", "t"}], "]"}]], "Input",
+ CellChangeTimes->{{4.000870063678416*^9, 4.000870140910297*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"x", "[", "t", "]"}], "\[Rule]", 
+    SuperscriptBox["\[ExponentialE]", "t"]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{4.000870148037789*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Abs", "[", 
+  RowBox[{"1.2", "-", 
+   RowBox[{"N", "[", 
+    RowBox[{"Exp", "[", "0.2", "]"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{4.0008701634383445`*^9, 4.000870182109709*^9}}],
+
+Cell[BoxData["0.0214027581601699`"], "Output",
+ CellChangeTimes->{4.000870185470894*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Abs", "[", 
+  RowBox[{"1.44", "-", 
+   RowBox[{"N", "[", 
+    RowBox[{"Exp", "[", "0.4", "]"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{4.0008702022697906`*^9, 4.00087020737275*^9}}],
+
+Cell[BoxData["0.0518246976412704`"], "Output",
+ CellChangeTimes->{4.0008702128556447`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1920, 989},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 179, 4, 139, "Title"],
+Cell[CellGroupData[{
+Cell[784, 30, 4409, 120, 335, "Input"],
+Cell[CellGroupData[{
+Cell[5218, 154, 3825, 139, 187, "Print"],
+Cell[9046, 295, 264, 7, 38, "Print"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9359, 308, 107, 4, 91, "Subtitle"],
+Cell[CellGroupData[{
+Cell[9491, 316, 4181, 117, 297, "Input"],
+Cell[CellGroupData[{
+Cell[13697, 437, 7954, 289, 412, "Print"],
+Cell[21654, 728, 231, 5, 22, "Print"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21946, 740, 107, 4, 91, "Subtitle"],
+Cell[CellGroupData[{
+Cell[22078, 748, 419, 12, 69, "Input"],
+Cell[CellGroupData[{
+Cell[22522, 764, 1734, 59, 67, "Print"],
+Cell[24259, 825, 231, 5, 22, "Print"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24551, 837, 109, 4, 91, "Subtitle"],
+Cell[CellGroupData[{
+Cell[24685, 845, 463, 13, 69, "Input"],
+Cell[CellGroupData[{
+Cell[25173, 862, 1758, 59, 67, "Print"],
+Cell[26934, 923, 259, 5, 22, "Print"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27254, 935, 107, 4, 91, "Subtitle"],
+Cell[CellGroupData[{
+Cell[27386, 943, 426, 12, 30, "Input"],
+Cell[27815, 957, 215, 6, 34, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28067, 968, 212, 5, 30, "Input"],
+Cell[28282, 975, 88, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28407, 981, 212, 5, 30, "Input"],
+Cell[28622, 988, 90, 1, 63, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
